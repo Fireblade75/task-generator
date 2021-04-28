@@ -225,6 +225,7 @@ hs_err_pid*
 
 ################################################################
 #                          Project                             #
+################################################################
 
 task-generator-ws/src/main/webapp/*
 !task-generator-ws/src/main/webapp/WEB-INF
