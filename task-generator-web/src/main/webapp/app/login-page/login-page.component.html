@@ -1,0 +1,21 @@
+<main>
+    <div class="account-form">
+        <h1>Inloggen</h1>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <label>
+                E-mailadres<br/>
+                <input type="text" name="email" placeholder="E-mailadres" formControlName="email" />
+            </label>
+            <br/>
+            <label>
+                Wachtwoord<br/>
+                <input type="password" name="password" placeholder="Wachtwoord" formControlName="password" /><br/>
+            </label>
+            <p [class.error]="message.type === 'error'">
+                <span *ngIf="message.text != ''">{{message.text}}</span>
+            </p>
+            <button type="submit">Inloggen</button>
+        </form>
+    </div>
+</main>

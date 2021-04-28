@@ -221,14 +221,14 @@ hs_err_pid*
 ################################################################
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+/task-generator-web/src/main/dist
+/task-generator-web/src/main/tmp
+/task-generator-web/src/main/out-tsc
 # Only exists if Bazel was run
-/bazel-out
+/task-generator-web/src/main/bazel-out
 
 # dependencies
-/node_modules
+/task-generator-web/src/main/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -247,14 +247,14 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
+/task-generator-web/src/main/.sass-cache
+/task-generator-web/src/main/connect.lock
+/task-generator-web/src/main/coverage
+/task-generator-web/src/main/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-/typings
+/task-generator-web/src/main/typings
 
 
 ################################################################

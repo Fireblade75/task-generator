@@ -1,0 +1,25 @@
+<main>
+    <div class="account-form">
+        <h1>Registreren</h1>
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <label>
+                E-mailadres<br/>
+                <input type="text" name="email" placeholder="E-mailadres" formControlName="email" />
+            </label>
+            <br/>
+            <label>
+                Wachtwoord<br/>
+                <input type="password" name="password" placeholder="Wachtwoord" formControlName="password" /><br/>
+            </label>
+            <label>
+                <input type="checkbox" name="tos" formControlName="tos" />
+                Ik ga akkoord met de <a routerLink="/tos" routerLinkActive="active">algemene voorwaarden</a><br/>
+            </label>
+            <p class="error">
+                <span *ngIf="errorMessage != '' && registerForm.invalid">{{errorMessage}}</span>
+            </p>
+            <button type="submit">Registreren</button>
+        </form>
+    </div>
+</main>
