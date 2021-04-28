@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@NamedQuery(name="Account.match", query="SELECT a FROM Account a WHERE a.email = :email AND a.passwordHash = :hash")
-@NamedQuery(name="Account.containsMail", query="SELECT count(a) FROM Account a WHERE a.email = :email")
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name="Account.findByMail", query="SELECT a FROM Account a WHERE a.email = :email")
+})
 public class Account {
 
     public static final int hashRounds = 10;
@@ -25,7 +23,7 @@ public class Account {
     private String email;
     private String passwordHash;
 
-    private boolean verifyPassword(String password) {
+    public boolean verifyPassword(String password) {
         var res = BCrypt.verifyer().verify(password.toCharArray(), passwordHash);
         return res.verified;
     }

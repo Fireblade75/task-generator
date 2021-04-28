@@ -8,16 +8,18 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>nl.firepy.taskgenerator.common.persistence.entities.Account</class>
         <class>nl.firepy.taskgenerator.common.persistence.entities.Task</class>
-    <class>nl.firepy.taskgenerator.common.persistence.entities.Category</class>
-    <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db:3306/taskgen"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jta-data-source" value="jdbc/taskgen"/>
-            <property name="javax.persistence.jdbc.user" value="javausr"/>
-            <property name="javax.persistence.jdbc.password" value="javapw"/>
-            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="database" />
-            <property name="eclipselink.target-database" value="MySQL"/>
-        </properties>
-    </persistence-unit>
+        <class>nl.firepy.taskgenerator.common.persistence.entities.Category</class>
+<!--    <exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <validation-mode>AUTO</validation-mode>
+        <properties>
+                <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db:3306/taskgen"/>
+                <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="jta-data-source" value="jdbc/taskgen"/>
+                <property name="javax.persistence.jdbc.user" value="javausr"/>
+                <property name="javax.persistence.jdbc.password" value="javapw"/>
+                <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+                <property name="eclipselink.ddl-generation.output-mode" value="database" />
+                <property name="eclipselink.target-database" value="MySQL"/>
+            </properties>
+        </persistence-unit>
 </persistence>

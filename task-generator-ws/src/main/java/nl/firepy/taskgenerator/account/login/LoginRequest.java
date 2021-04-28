@@ -21,7 +21,7 @@ public class LoginRequest implements Serializable {
     }
 
     public boolean isValid() {
-        return email.length() > 0 && email.length() < 64
-                && password.length() > 0 && password.length() < 32;
+        return email.length() > 0 && email.length() <= 64
+                && password.length() > 0 && password.length() <= 32;
     }
 }

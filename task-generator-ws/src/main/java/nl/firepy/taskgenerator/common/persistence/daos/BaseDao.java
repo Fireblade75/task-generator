@@ -7,11 +7,8 @@ import java.util.List;
 
 public abstract class BaseDao<E> {
 
-    private static final String persistenceUnitName =
-            System.getenv("PERSISTENCE_UNIT") != null ? System.getenv("PERSISTENCE_UNIT") : "office";
-
     protected static final EntityManager em =
-            Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+            Persistence.createEntityManagerFactory("docker").createEntityManager();
 
     public E get(int id) {
         E e = em.find(E(), id);

@@ -8,4 +8,8 @@ public class TaskGenAppException extends RuntimeException {
     public TaskGenAppException(Exception e) {
         super(e);
     }
+
+    public TaskGenAppException(String message, Exception e) {
+        super(message, e);
+    }
 }
