@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="taskgenerator-ws" />
+        <module name="taskgenerator-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="taskgenerator" target="1.5" />
+      <module name="taskgenerator" target="11" />
+      <module name="taskgenerator-web" target="11" />
       <module name="taskgenerator-ws" target="11" />
     </bytecodeTargetLevel>
   </component>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="taskgenerator-web:war">
+    <output-path>$PROJECT_DIR$/task-generator-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>taskgenerator-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="taskgenerator-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="taskgenerator-web:war exploded" />
+    </root>
+  </artifact>
+</component>

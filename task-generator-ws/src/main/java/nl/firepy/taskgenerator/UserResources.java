@@ -1,19 +1,21 @@
 package nl.firepy.taskgenerator;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
+import nl.firepy.taskgenerator.common.errors.web.ApiError;
+
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-@Path("user")
+@RequestScoped
+@Path("/user")
 public class UserResources {
 
     @GET
-    public JsonObject users() {
-        return Json.createObjectBuilder()
-                .add("username", "bob")
-                .add("age", 14)
-                .build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response users() {
+        return Response.ok(new ApiError("USER", "")).build();
     }
 }

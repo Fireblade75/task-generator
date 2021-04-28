@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>nl.firepy</groupId>
+        <artifactId>taskgenerator</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>taskgenerator-web</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>war</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.0</version>
+
+                <configuration>
+                    <warSourceDirectory>${project.basedir}</warSourceDirectory>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/main/webapp/assets/i18n</directory>
+                            <targetPath>/assets/i18n</targetPath>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*.json</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>${project.basedir}/src/main/webapp/assets/errors</directory>
+                            <targetPath>/</targetPath>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*.html</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.11.3 </version>
+
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v14.16.1</nodeVersion>
+                            <installDirectory>target</installDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <installDirectory>target</installDirectory>
+                            <workingDirectory>src/main</workingDirectory>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run-script build</id>
+<!--                        <phase>prepare-package</phase>-->
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <installDirectory>target</installDirectory>
+                            <arguments>run-script build</arguments>
+                            <workingDirectory>src/main</workingDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/dist</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

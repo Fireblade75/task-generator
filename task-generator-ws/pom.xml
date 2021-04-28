@@ -10,16 +10,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>nl.firepy</groupId>
     <artifactId>taskgenerator-ws</artifactId>
     <name>${project.artifactId}</name>
     <packaging>war</packaging>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <junit.version>5.7.0</junit.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -29,9 +22,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.25.Final</version>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>2.7.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.7.8</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -57,11 +57,6 @@
 
         <!-- Test Dependencies -->
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.1.6.Final</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
@@ -79,11 +74,29 @@
             <version>3.16.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>taskgenerator</finalName>
         <plugins>
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>3.3.4</version>
+                <configuration>
+                    <copyDependencies>
+                        <dependency>
+                            <filter>mysql:mysql-connector-java:8.0.23</filter>
+                            <location>jdbc</location>
+                        </dependency>
+                    </copyDependencies>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

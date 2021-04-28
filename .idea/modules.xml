@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/taskgenerator.iml" filepath="$PROJECT_DIR$/taskgenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/task-generator-web/taskgenerator-web.iml" filepath="$PROJECT_DIR$/task-generator-web/taskgenerator-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/task-generator-ws/taskgenerator-ws.iml" filepath="$PROJECT_DIR$/task-generator-ws/taskgenerator-ws.iml" />
     </modules>
   </component>
