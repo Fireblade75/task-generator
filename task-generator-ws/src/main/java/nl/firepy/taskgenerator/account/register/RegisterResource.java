@@ -28,13 +28,13 @@ public class RegisterResource {
     public Response register(RegisterRequest request) {
 
         if(!request.isValid()) {
-            return Response.status(400).entity(new ApiError("Invalid request")).build();
+            return ApiError.buildResponse(400, "Ongeldig request");
         }
 
         boolean emailExists = accountDao.containsEmail(request.getEmail());
         if(emailExists) {
             log.info("Email already in use: " + request.getEmail());
-            return ApiError.buildResponse(409, "Email already in use");
+            return ApiError.buildResponse(409, "E-mail adres al in gebruik");
         }
 
         Account account = Account.builder()
@@ -44,6 +44,6 @@ public class RegisterResource {
         accountDao.save(account);
         log.info("Registered new user: " + request.getEmail());
 
-        return Response.status(201).entity(new AccountResponse(request.getEmail())).build();
+        return Response.status(201).entity(new AccountResponse(request.getEmail(), 0)).build();
     }
 }

@@ -5,24 +5,27 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.extern.log4j.Log4j2;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
+@Log4j2
 public class JwtTokenService {
     private static final String issuer = "Firepy";
     Algorithm algorithm = Algorithm.HMAC256("ABAC17813");
 
     JWTVerifier verifier = JWT.require(algorithm)
             .withIssuer(issuer)
+            .acceptLeeway(1)
             .build();
 
     public String getToken(TokenPayload payload) {
-        Instant now = LocalDateTime.now().toInstant(ZoneOffset.UTC);
+        Instant now = OffsetDateTime.now(ZoneOffset.UTC).toInstant();
 
         return JWT.create()
                 .withIssuer(issuer)
@@ -39,7 +42,12 @@ public class JwtTokenService {
             DecodedJWT jwt = verifier.verify(token);
             return TokenPayload.fromMap(jwt.getClaims());
         } catch (JWTVerificationException exception){
+            log.info(exception);
             return null;
         }
+    }
+
+    public int getExpireTime() {
+        return 60 * 60; // 1 hour
     }
 }

@@ -13,7 +13,7 @@ public class AccountDao extends BaseDao<Account> {
 
     public Optional<Account> findByMail(String email) {
         log.info("Handling login request for " + email);
-        var query = em.createNamedQuery("Account.findByMail", Account.class);
+        var query = em().createNamedQuery("Account.findByMail", Account.class);
         query.setParameter("email", email.toLowerCase());
 //        query.setParameter("hash", credentials.getHash());
         var matches = query.getResultList();
@@ -26,9 +26,9 @@ public class AccountDao extends BaseDao<Account> {
     }
 
     public boolean containsEmail(String email) {
-        em.createQuery("SELECT a from Account a WHERE 1=1");
+        em().createQuery("SELECT a from Account a WHERE 1=1");
 
-        var query = em.createNamedQuery("Account.findByMail", Account.class);
+        var query = em().createNamedQuery("Account.findByMail", Account.class);
         query.setParameter("email", email.toLowerCase());
         return query.getResultList().size() == 1;
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-login-page',
@@ -25,6 +25,10 @@ export class LoginPageComponent implements OnInit {
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.accountService.isLoggedIn()) {
+      this.router.navigate(['/tasklist'])
+    }
+
     this.route.paramMap.subscribe(params => {
       const msg = params.get('msg')
       if (msg) {
@@ -47,11 +51,11 @@ export class LoginPageComponent implements OnInit {
       }
     } else {
       this.accountService.login(this.loginForm.value)
-        .subscribe(email => {
-          if(email) {
+        .subscribe(response => {
+          if(response.ok) {
             this.router.navigate(['/tasklist'])
           } else {
-            this.message = { text: 'Login mislukt', type: 'error' }
+            this.message = { text: response.msg, type: 'error' }
           }
         })
     }

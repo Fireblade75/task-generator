@@ -1,14 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Material+Icons&display=swap');
+@import '~@angular/material/theming';
+@include mat-core();
 
-$color-primary-dark: #005cb2;
-$color-primary: #1e88e5;
-$color-primary-light: #6ab7ff;
-$color-error-dark: #ab000d;
-$color-error: #e53935;
-$color-error-light: #ff6f60;
+$color-primary-dark: #2E7D32;
+$color-primary: #4CAF50;
+$color-primary-light: #81C784;
+$color-error-dark: #D84315;
+$color-error: #FF5722;
+$color-error-light: #FF8A65;
+$color-secondary: #CDDC39;
 $white: #fff;
+
+$app-primary: mat-palette($mat-green, 500, 300, 800);
+$app-accent: mat-palette($mat-lime, 500, 300, 800);
+$app-warn:  mat-palette($mat-deep-orange, 500, 300, 800);
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Nunito, Arial, Helvetica, sans-serif',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+$app-theme: mat-light-theme(
+    $app-primary,
+    $app-accent,
+    $app-warn,  
+);
+
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+
+@include mat-core($custom-typography);
+@include angular-material-theme($app-theme);
 
 $font-primary: Nunito, Arial, Helvetica, sans-serif;
 
@@ -81,6 +107,10 @@ main {
 }
 
 main {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
     a,
     a:hover,
     a:visited {
@@ -91,4 +121,34 @@ main {
 
 .error {
     color: $color-error;
+}
+
+.list-container {
+    border: 2px solid $color-primary-dark;
+
+    .mat-list-icon {
+        color: $primary;
+      }
+
+    // .list-element {
+    //     display: flex;
+    //     height: 64px;
+    // }
+
+    // mat-icon {
+    //     flex: 0 0 auto;
+    //     line-height: 64px;
+    //     font-size: 32px;
+    //     width: 64px;
+    //     text-align: center;
+    //     color: $font-primary;
+    // }
+
+    // .list-element-text {
+    //     flex: 1 1 auto;
+    // }
+}
+
+.mat-list-base .mat-list-item .mat-list-text .list-item-title {
+    font-weight: 600;
 }

@@ -1,0 +1,11 @@
+<nav>
+    <a routerLink="/" id="page-title" routerLinkActive="active">Task Generator</a><br />
+    <ng-container *ngIf="!loggedIn">
+        <a routerLink="/login" routerLinkActive="active">login</a><br />
+        <a routerLink="/register" routerLinkActive="active">register</a>
+    </ng-container>
+    <ng-container *ngIf="loggedIn">
+        <a routerLink="/tasklist" routerLinkActive="active">tasks</a><br />
+        <a href="" (click)="logout($event)">logout</a>
+    </ng-container>
+</nav>

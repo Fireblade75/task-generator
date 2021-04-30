@@ -5,7 +5,10 @@ export interface ApiError {
 }
 
 export function isApiError(object: any): object is ApiError {
-    return 'error' in object && typeof object.error === 'string';
+    return object !== null
+        && typeof object === 'object'
+        && 'error' in object 
+        && typeof object.error === 'string';
 }
 
 export interface RequestResponse {

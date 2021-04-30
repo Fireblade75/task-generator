@@ -17,7 +17,7 @@
                 Ik ga akkoord met de <a routerLink="/tos" routerLinkActive="active">algemene voorwaarden</a><br/>
             </label>
             <p class="error">
-                <span *ngIf="errorMessage != '' && registerForm.invalid">{{errorMessage}}</span>
+                <span *ngIf="errorMessage != ''">{{errorMessage}}</span>
             </p>
             <button type="submit">Registreren</button>
         </form>

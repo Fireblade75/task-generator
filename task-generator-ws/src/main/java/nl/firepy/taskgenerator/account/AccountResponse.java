@@ -11,4 +11,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AccountResponse implements Serializable {
     private String email;
+    private int expiresIn = 0;
 }

@@ -44,7 +44,7 @@ public class LoginResource {
                     TokenPayload.builder().email(email).build());
 
             return Response
-                    .ok(new AccountResponse(email))
+                    .ok(new AccountResponse(email, jwtTokenService.getExpireTime()))
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
                     .build();
 
