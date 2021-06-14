@@ -4,16 +4,18 @@ import nl.firepy.taskgenerator.account.AccountResponse;
 import nl.firepy.taskgenerator.common.errors.web.ApiError;
 import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
 import nl.firepy.taskgenerator.common.persistence.entities.Account;
-import nl.firepy.taskgenerator.security.JwtTokenService;
-import nl.firepy.taskgenerator.security.TokenPayload;
+import nl.firepy.taskgenerator.common.security.JwtTokenService;
+import nl.firepy.taskgenerator.common.security.TokenPayload;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
+import java.util.List;
 import java.util.Optional;
 
 @RequestScoped
@@ -31,17 +33,18 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(LoginRequest loginRequest) {
+    public Response login(@Valid LoginRequest loginRequest) {
 
-        if(!loginRequest.isValid()) {
-            return Response.status(400).entity(new ApiError("Invalid request")).build();
-        }
+//        if(!loginRequest.isValid()) {
+//            return Response.status(400).entity(new ApiError("Invalid request")).build();
+//        }
 
         Optional<Account> account = accountDao.findByMail(loginRequest.getEmail());
         if(account.isPresent() && account.get().verifyPassword(loginRequest.getPassword())) {
             String email = account.get().getEmail();
+            List<String> roles = List.of("user");
             String token = jwtTokenService.getToken(
-                    TokenPayload.builder().email(email).build());
+                    TokenPayload.builder().email(email).roles(roles).build());
 
             return Response
                     .ok(new AccountResponse(email, jwtTokenService.getExpireTime()))

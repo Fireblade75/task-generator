@@ -1,4 +1,4 @@
-package nl.firepy.taskgenerator.security;
+package nl.firepy.taskgenerator.common.security;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

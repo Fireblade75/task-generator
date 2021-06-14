@@ -1,11 +1,6 @@
 package nl.firepy.taskgenerator.common.persistence.entities;
 
-import org.eclipse.persistence.annotations.PrimaryKey;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Category {
@@ -13,4 +8,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne(optional = false, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private Project project;
 }

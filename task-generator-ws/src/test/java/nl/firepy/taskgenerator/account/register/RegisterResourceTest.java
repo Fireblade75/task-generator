@@ -1,7 +1,6 @@
 package nl.firepy.taskgenerator.account.register;
 
 import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.mockito.Mock;
 import javax.ws.rs.core.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

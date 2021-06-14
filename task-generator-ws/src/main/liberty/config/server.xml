@@ -7,18 +7,19 @@
         <feature>mpConfig-1.4</feature>
         <feature>jdbc-4.3</feature>
         <feature>jpa-2.2</feature>
+        <feature>beanValidation-2.0</feature>
     </featureManager>
 
     <dataSource id="docker" jndiName="jdbc/taskgen">
-        <jdbcDriver libraryRef="jdbcLib"/>
+        <jdbcDriver libraryRef="MySQLLib"/>
         <properties serverName="db" portNumber="3306"
                     databaseName="taskgen"
                     user="javausr"
                     password="javapw"/>
     </dataSource>
 
-    <library id="jdbcLib">
-        <fileset dir="jdbc" includes="*.jar"/>
+    <library id="MySQLLib">
+        <fileset dir="/opt/ol/wlp/lib" includes="mysql-connector-java-8.0.23.jar"/>
     </library>
 
     <variable name="default.http.port" defaultValue="8080"/>

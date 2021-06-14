@@ -1,5 +1,7 @@
 package nl.firepy.taskgenerator.tasks;
 
+import nl.firepy.taskgenerator.common.security.annotations.RequiresRole;
+
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,8 +11,9 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/tasks/")
+@RequiresRole("user")
 @RequestScoped
-public class TaskListResource {
+public class TasksResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

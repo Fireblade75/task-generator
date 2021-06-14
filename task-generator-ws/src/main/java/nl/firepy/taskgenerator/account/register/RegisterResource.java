@@ -4,7 +4,9 @@ import lombok.extern.log4j.Log4j2;
 import nl.firepy.taskgenerator.account.AccountResponse;
 import nl.firepy.taskgenerator.common.errors.web.ApiError;
 import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
+import nl.firepy.taskgenerator.common.persistence.daos.ProjectDao;
 import nl.firepy.taskgenerator.common.persistence.entities.Account;
+import nl.firepy.taskgenerator.common.persistence.entities.Project;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,6 +23,9 @@ import javax.ws.rs.core.Response;
 public class RegisterResource {
     @Inject
     AccountDao accountDao;
+
+    @Inject
+    ProjectDao projectDao;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -43,6 +48,11 @@ public class RegisterResource {
                 .build();
         accountDao.save(account);
         log.info("Registered new user: " + request.getEmail());
+
+        projectDao.save(Project.builder()
+                .projectName("defaultProject")
+                .owner(account)
+                .build());
 
         return Response.status(201).entity(new AccountResponse(request.getEmail(), 0)).build();
     }

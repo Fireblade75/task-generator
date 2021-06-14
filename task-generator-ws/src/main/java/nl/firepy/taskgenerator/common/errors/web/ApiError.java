@@ -1,6 +1,7 @@
 package nl.firepy.taskgenerator.common.errors.web;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -2,7 +2,7 @@ package nl.firepy.taskgenerator.account.login;
 
 import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
 import nl.firepy.taskgenerator.common.persistence.entities.Account;
-import nl.firepy.taskgenerator.security.JwtTokenService;
+import nl.firepy.taskgenerator.common.security.JwtTokenService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

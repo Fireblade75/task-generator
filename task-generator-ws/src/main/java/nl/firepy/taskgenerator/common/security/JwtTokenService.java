@@ -1,4 +1,4 @@
-package nl.firepy.taskgenerator.security;
+package nl.firepy.taskgenerator.common.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -7,19 +7,20 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.log4j.Log4j2;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Log4j2
+@ApplicationScoped
 public class JwtTokenService {
     private static final String issuer = "Firepy";
     Algorithm algorithm = Algorithm.HMAC256("ABAC17813");
 
-    JWTVerifier verifier = JWT.require(algorithm)
+    private final JWTVerifier verifier = JWT.require(algorithm)
             .withIssuer(issuer)
             .acceptLeeway(1)
             .build();

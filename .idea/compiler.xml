@@ -12,8 +12,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="taskgenerator" target="11" />
-      <module name="taskgenerator-web" target="11" />
+      <module name="taskgenerator" target="1.5" />
+      <module name="taskgenerator-web" target="1.5" />
       <module name="taskgenerator-ws" target="11" />
     </bytecodeTargetLevel>
   </component>
