@@ -4,9 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Task")
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-public class Task {
+@NamedQueries({
+        @NamedQuery(name = "Task.findByProject", query = "SELECT t FROM Task t WHERE t.project = :project")
+})
+public class TaskEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +20,5 @@ public class Task {
     private String description;
 
     @ManyToOne(optional = false, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private Project project;
+    private ProjectEntity project;
 }

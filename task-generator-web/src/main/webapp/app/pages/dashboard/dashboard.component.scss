@@ -1,0 +1,48 @@
+
+@import 'variables.scss';
+
+.half-panel:first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-task {
+    display: flex;
+    margin: 16px 0;
+    flex: 1 1 auto;
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin-right: 16px;
+    }
+
+    .task-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+}
+
+
+
+label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+form .button-bar {
+    margin-top: 16px;
+}
+
+textarea,
+select,
+input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+textarea {
+    height: 80px;
+}

@@ -1,42 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Material+Icons&display=swap');
-@import '~@angular/material/theming';
-@include mat-core();
 
-$color-primary-dark: #2E7D32;
-$color-primary: #4CAF50;
-$color-primary-light: #81C784;
-$color-error-dark: #D84315;
-$color-error: #FF5722;
-$color-error-light: #FF8A65;
-$color-secondary: #CDDC39;
-$white: #fff;
-
-$app-primary: mat-palette($mat-green, 500, 300, 800);
-$app-accent: mat-palette($mat-lime, 500, 300, 800);
-$app-warn:  mat-palette($mat-deep-orange, 500, 300, 800);
-
-$custom-typography: mat-typography-config(
-  $font-family: 'Nunito, Arial, Helvetica, sans-serif',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 500)
-);
-
-$app-theme: mat-light-theme(
-    $app-primary,
-    $app-accent,
-    $app-warn,  
-);
-
-$primary: mat-color($app-primary);
-$accent: mat-color($app-accent);
-$warn: mat-color($app-warn);
+@import 'scss/variables.scss';
 
 @include mat-core($custom-typography);
 @include angular-material-theme($app-theme);
-
-$font-primary: Nunito, Arial, Helvetica, sans-serif;
 
 body {
     font-family: $font-primary;
@@ -123,32 +92,54 @@ main {
     color: $color-error;
 }
 
-.list-container {
-    border: 2px solid $color-primary-dark;
 
-    .mat-list-icon {
-        color: $primary;
-      }
+.button-bar {
+    display: flex;
+    gap: 16px;
 
-    // .list-element {
-    //     display: flex;
-    //     height: 64px;
-    // }
+    button {
+        cursor: pointer;
+        height: 32px;
+        flex: 1 1 0;
+        color: white;
+        background-color: $color-primary-light;
+        border-color: $color-primary-dark;
+    }
 
-    // mat-icon {
-    //     flex: 0 0 auto;
-    //     line-height: 64px;
-    //     font-size: 32px;
-    //     width: 64px;
-    //     text-align: center;
-    //     color: $font-primary;
-    // }
+    button.button-alt {
+        background-color: $color-grey-light;
+        border-color: $color-grey-dark;
+    }
 
-    // .list-element-text {
-    //     flex: 1 1 auto;
-    // }
+    a {
+        flex: 1 1 auto;
+
+        button {
+            width: 100%;
+        }
+    }
 }
 
-.mat-list-base .mat-list-item .mat-list-text .list-item-title {
-    font-weight: 600;
+
+main.panel-container {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.half-panel {
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    border: 2px solid $color-primary-dark;
+    padding: 16px;
+    width: calc(50% - 16px);
+
+    h2 {
+        color: rgba(0,0,0,0.6);
+        margin-top: 8px;
+    }
+
+    p {
+        height: 50px;
+    }
 }

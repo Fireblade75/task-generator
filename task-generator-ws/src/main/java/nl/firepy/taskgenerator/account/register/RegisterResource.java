@@ -3,10 +3,10 @@ package nl.firepy.taskgenerator.account.register;
 import lombok.extern.log4j.Log4j2;
 import nl.firepy.taskgenerator.account.AccountResponse;
 import nl.firepy.taskgenerator.common.errors.web.ApiError;
-import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
-import nl.firepy.taskgenerator.common.persistence.daos.ProjectDao;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
-import nl.firepy.taskgenerator.common.persistence.entities.Project;
+import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
+import nl.firepy.taskgenerator.common.persistence.daos.ProjectsDao;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
+import nl.firepy.taskgenerator.common.persistence.entities.ProjectEntity;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -22,10 +22,10 @@ import javax.ws.rs.core.Response;
 @Path("/accounts/register")
 public class RegisterResource {
     @Inject
-    AccountDao accountDao;
+    AccountsDao accountsDao;
 
     @Inject
-    ProjectDao projectDao;
+    ProjectsDao projectsDao;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -36,20 +36,20 @@ public class RegisterResource {
             return ApiError.buildResponse(400, "Ongeldig request");
         }
 
-        boolean emailExists = accountDao.containsEmail(request.getEmail());
+        boolean emailExists = accountsDao.containsEmail(request.getEmail());
         if(emailExists) {
             log.info("Email already in use: " + request.getEmail());
             return ApiError.buildResponse(409, "E-mail adres al in gebruik");
         }
 
-        Account account = Account.builder()
+        AccountEntity account = AccountEntity.builder()
                 .email(request.getEmail().toLowerCase())
                 .passwordHash(request.getHash())
                 .build();
-        accountDao.save(account);
+        accountsDao.save(account);
         log.info("Registered new user: " + request.getEmail());
 
-        projectDao.save(Project.builder()
+        projectsDao.save(ProjectEntity.builder()
                 .projectName("defaultProject")
                 .owner(account)
                 .build());

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
 
 import java.io.Serializable;
 
@@ -21,7 +21,7 @@ public class LoginRequest implements Serializable {
     private String password;
 
     public String getHash() {
-        return BCrypt.withDefaults().hashToString(Account.hashRounds, password.toCharArray());
+        return BCrypt.withDefaults().hashToString(AccountEntity.hashRounds, password.toCharArray());
     }
 
     public boolean isValid() {

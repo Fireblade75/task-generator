@@ -1,0 +1,11 @@
+<div class="task-row" [class.completed]="task.done">
+    <img class="task-icon" src="assets/img/taskicon.svg" alt="task-icon" />
+    <div class="task-content">
+        <div mat-line class="list-item-title">{{task.name}}</div>
+        <div mat-line>{{task.description}}</div>
+    </div>
+    <div class="category-container">
+        <span class="category">Exploration</span><span class="category">Combat</span>
+    </div>
+    <button class="task-button"><img [src]="doneImg" alt="task-done-button" /></button>
+</div>

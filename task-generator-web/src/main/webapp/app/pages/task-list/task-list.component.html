@@ -1,14 +1,6 @@
 <main>
-    <h1>Task List</h1>
-    <div class="list-container">
-        
-        <mat-list>
-            <mat-list-item *ngFor="let task of tasks">
-              <mat-icon mat-list-icon>done</mat-icon>
-              <div mat-line class="list-item-title">{{task.name}}</div>
-              <div mat-line>{{task.description}}</div>
-            </mat-list-item>
-          </mat-list>
-          
-    </div>
+  <h1>Task List</h1>
+  <div class="list-container">
+      <app-task-row *ngFor="let task of tasks" [task]="task"></app-task-row>
+  </div>
 </main>

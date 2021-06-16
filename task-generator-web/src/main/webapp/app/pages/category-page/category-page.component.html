@@ -1,0 +1,8 @@
+<main class="panel-container">
+    <app-category-list class="half-panel" 
+        (addCategory)="addCategory()"
+        (editCategory)="editCategory($event)"></app-category-list>
+    <app-category-form class="half-panel" 
+        [style.visibility]="editVisibility" 
+        (finished)="finishedEdit()"></app-category-form>
+</main>

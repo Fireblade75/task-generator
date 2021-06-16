@@ -1,0 +1,10 @@
+<div class="title-container">
+    <h2>Categories</h2>
+    <img class="add-icon" src="assets/img/add.svg" alt="add category" (click)="addCategory.emit()" />
+</div>
+<div class="list-container">
+    <app-category-row *ngFor="let category of categories" 
+        [category]="category"
+        (editCategory)="editCategory.emit($event)"
+        (deleteCategory)="deleteCategory($event)"></app-category-row>
+</div>

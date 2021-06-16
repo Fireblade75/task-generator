@@ -1,7 +1,7 @@
 package nl.firepy.taskgenerator.common.persistence.daos;
 
 import lombok.extern.log4j.Log4j2;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -12,14 +12,14 @@ import java.util.Optional;
 @Log4j2
 @Stateless
 @TransactionManagement
-public class AccountDao implements BaseDao<Account> {
+public class AccountsDao implements BaseDao<AccountEntity> {
 
     @PersistenceContext
     private EntityManager em;
 
-    public Optional<Account> findByMail(String email) {
+    public Optional<AccountEntity> findByMail(String email) {
         log.info("Handling login request for " + email);
-        var query = em.createNamedQuery("Account.findByMail", Account.class);
+        var query = em.createNamedQuery("Account.findByMail", AccountEntity.class);
         query.setParameter("email", email.toLowerCase());
 //        query.setParameter("hash", credentials.getHash());
         var matches = query.getResultList();
@@ -32,21 +32,19 @@ public class AccountDao implements BaseDao<Account> {
     }
 
     public boolean containsEmail(String email) {
-        em.createQuery("SELECT a from Account a WHERE 1=1");
-
-        var query = em.createNamedQuery("Account.findByMail", Account.class);
+        var query = em.createNamedQuery("Account.findByMail", AccountEntity.class);
         query.setParameter("email", email.toLowerCase());
         return query.getResultList().size() == 1;
     }
 
     @Override
-    public Optional<Account> get(int id) {
-        return Optional.ofNullable(em.find(Account.class, id));
+    public Optional<AccountEntity> get(int id) {
+        return Optional.ofNullable(em.find(AccountEntity.class, id));
     }
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void save(Account account) {
+    public void save(AccountEntity account) {
         em.persist(account);
     }
 

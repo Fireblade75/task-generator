@@ -2,8 +2,8 @@ package nl.firepy.taskgenerator.account.login;
 
 import nl.firepy.taskgenerator.account.AccountResponse;
 import nl.firepy.taskgenerator.common.errors.web.ApiError;
-import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
+import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
 import nl.firepy.taskgenerator.common.security.JwtTokenService;
 import nl.firepy.taskgenerator.common.security.TokenPayload;
 
@@ -25,7 +25,7 @@ public class LoginResource {
     private UriInfo context;
 
     @Inject
-    AccountDao accountDao;
+    AccountsDao accountsDao;
 
     @Inject
     JwtTokenService jwtTokenService;
@@ -39,7 +39,7 @@ public class LoginResource {
 //            return Response.status(400).entity(new ApiError("Invalid request")).build();
 //        }
 
-        Optional<Account> account = accountDao.findByMail(loginRequest.getEmail());
+        Optional<AccountEntity> account = accountsDao.findByMail(loginRequest.getEmail());
         if(account.isPresent() && account.get().verifyPassword(loginRequest.getPassword())) {
             String email = account.get().getEmail();
             List<String> roles = List.of("user");

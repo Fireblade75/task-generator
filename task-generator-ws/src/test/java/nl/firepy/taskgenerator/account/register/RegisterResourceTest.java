@@ -1,6 +1,6 @@
 package nl.firepy.taskgenerator.account.register;
 
-import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
+import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 class RegisterResourceTest {
 
     @Mock
-    private AccountDao accountDao;
+    private AccountsDao accountsDao;
 
     @InjectMocks
     private RegisterResource registerResource;
@@ -42,23 +42,23 @@ class RegisterResourceTest {
 
     @Test
     void register() {
-        when(accountDao.containsEmail(eq("info@example.com"))).thenReturn(false);
+        when(accountsDao.containsEmail(eq("info@example.com"))).thenReturn(false);
 
         Response response = registerResource.register(goodRequest);
 
         assertThat(response.getStatus()).isEqualTo(201);
-        verify(accountDao).containsEmail(anyString());
-        verify(accountDao).save(any());
+        verify(accountsDao).containsEmail(anyString());
+        verify(accountsDao).save(any());
     }
 
     @Test
     void registerExistingMail() {
-        when(accountDao.containsEmail(eq("info@example.com"))).thenReturn(true);
+        when(accountsDao.containsEmail(eq("info@example.com"))).thenReturn(true);
 
         Response response = registerResource.register(goodRequest);
 
         assertThat(response.getStatus()).isEqualTo(409);
-        verify(accountDao).containsEmail(anyString());
+        verify(accountsDao).containsEmail(anyString());
     }
 
     @Test

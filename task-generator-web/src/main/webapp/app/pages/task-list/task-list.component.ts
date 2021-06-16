@@ -12,15 +12,18 @@ export class TaskListComponent implements OnInit {
   tasks = [
     {
       "description": "Kill the evil green dragon that burned the village",
-      "name": "Slay the dragon"
+      "name": "Slay the dragon",
+      "done": false
     },
     {
       "description": "The princess is trapped in the dragon's lair",
-      "name": "Save the princess"
+      "name": "Save the princess",
+      "done": true
     },
     {
       "description": "Recreate the blade of legends",
-      "name": "Reforge Excalibur"
+      "name": "Reforge Excalibur",
+      "done": false
     }
   ]
 

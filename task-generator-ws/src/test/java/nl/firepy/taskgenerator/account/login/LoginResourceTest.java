@@ -1,7 +1,7 @@
 package nl.firepy.taskgenerator.account.login;
 
-import nl.firepy.taskgenerator.common.persistence.daos.AccountDao;
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
+import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
 import nl.firepy.taskgenerator.common.security.JwtTokenService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 class LoginResourceTest {
 
     @Mock
-    private AccountDao accountDao;
+    private AccountsDao accountsDao;
 
     @Mock
     private JwtTokenService jwtTokenService;
@@ -35,7 +35,7 @@ class LoginResourceTest {
     private static LoginRequest wrongRequest;
     private static LoginRequest invalidRequest;
 
-    private static Account account;
+    private static AccountEntity account;
 
     @BeforeAll
     static void init() {
@@ -51,7 +51,7 @@ class LoginResourceTest {
         invalidRequest.setEmail("info@example.com");
         invalidRequest.setPassword("123456789".repeat(10));
 
-        account = Account.builder()
+        account = AccountEntity.builder()
                 .email(goodRequest.getEmail())
                 .passwordHash(goodRequest.getHash())
                 .build();
@@ -59,7 +59,7 @@ class LoginResourceTest {
 
     @Test
     void testCorrectLogin() {
-        when(accountDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.of(account));
+        when(accountsDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.of(account));
         when(jwtTokenService.getToken(any())).thenReturn("TOKEN");
 
         Response response = loginResource.login(goodRequest);
@@ -69,33 +69,33 @@ class LoginResourceTest {
         assertThat(response.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0))
                 .isEqualTo("Bearer TOKEN");
 
-        verify(accountDao, times(1)).findByMail(anyString());
+        verify(accountsDao, times(1)).findByMail(anyString());
         verify(jwtTokenService, times(1)).getToken(any());
     }
 
     @Test
     void testWrongLogin() {
-        when(accountDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.of(account));
+        when(accountsDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.of(account));
 
         Response response = loginResource.login(wrongRequest);
 
         assertThat(response.getStatus()).isEqualTo(401);
         assertThat(response.getHeaders()).doesNotContainKey(HttpHeaders.AUTHORIZATION);
 
-        verify(accountDao, times(1)).findByMail(anyString());
+        verify(accountsDao, times(1)).findByMail(anyString());
         verify(jwtTokenService, times(0)).getToken(any());
     }
 
     @Test
     void testUnknownLogin() {
-        when(accountDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.empty());
+        when(accountsDao.findByMail(goodRequest.getEmail())).thenReturn(Optional.empty());
 
         Response response = loginResource.login(goodRequest);
 
         assertThat(response.getStatus()).isEqualTo(401);
         assertThat(response.getHeaders()).doesNotContainKey(HttpHeaders.AUTHORIZATION);
 
-        verify(accountDao, times(1)).findByMail(anyString());
+        verify(accountsDao, times(1)).findByMail(anyString());
         verify(jwtTokenService, times(0)).getToken(any());
     }
 
@@ -106,7 +106,7 @@ class LoginResourceTest {
         assertThat(response.getStatus()).isEqualTo(400);
         assertThat(response.getHeaders()).doesNotContainKey(HttpHeaders.AUTHORIZATION);
 
-        verify(accountDao, times(0)).findByMail(anyString());
+        verify(accountsDao, times(0)).findByMail(anyString());
         verify(jwtTokenService, times(0)).getToken(any());
     }
 

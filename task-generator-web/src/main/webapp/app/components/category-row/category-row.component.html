@@ -1,0 +1,6 @@
+<div class="category-row">
+    <div class="category-color" [style.backgroundColor]="category.color" ></div>
+    <div class="category-name">{{category.name}}</div>
+    <img class="edit-icon" src="assets/img/edit.svg" alt="edit-category" (click)="editCategory.emit(category)" />
+    <img class="edit-icon" src="assets/img/delete.svg" alt="delete-category" (click)="deleteCategory.emit(category)" />
+</div>

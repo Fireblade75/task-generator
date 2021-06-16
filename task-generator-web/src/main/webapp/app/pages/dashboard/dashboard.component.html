@@ -1,0 +1,51 @@
+<main class="panel-container">
+    <div class="half-panel">
+        <h2>Current Task</h2>
+        <div class="current-task">
+            <img src="assets/img/taskicon.svg" alt='task-icon' />
+            <div class="task-text">
+                <div class="task-title">Slay the Dragon</div>
+                <div class="task-description">Green dragons are weak to bolts, bringing an antifire shield is highly recommended</div>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button class="button-alt">Reroll Task</button>
+            <button>Complete Task</button>
+        </div>
+    </div>
+
+    <div class="half-panel">
+        <h2>Add Task</h2>
+        <form>
+            <div>
+                <label>Name</label>
+                <input type="text" name="name" />
+            </div>
+
+            <div>
+                <label>Description</label>
+                <textarea name="description"></textarea>
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category" multiple>
+                    <option>Combat</option>
+                    <option>Quest</option>
+                    <option>Exploration</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Tier</label>
+                <select name="category">
+                    <option>---</option>
+                </select>
+            </div>
+            <div class="button-bar">
+                <button class="button-alt">Clear</button>
+                <button>Add Task</button>
+            </div>
+        </form>
+    </div>
+</main>

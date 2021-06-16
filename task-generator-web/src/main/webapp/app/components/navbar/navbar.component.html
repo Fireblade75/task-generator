@@ -5,7 +5,10 @@
         <a routerLink="/register" routerLinkActive="active">register</a>
     </ng-container>
     <ng-container *ngIf="loggedIn">
+        <a routerLink="/dashboard" routerLinkActive="active">dashboard</a><br />
         <a routerLink="/tasklist" routerLinkActive="active">tasks</a><br />
+        <a routerLink="/manage" routerLinkActive="active">manage</a><br />
+        <a routerLink="/projects" routerLinkActive="active">projects</a><br />
         <a href="" (click)="logout($event)">logout</a>
     </ng-container>
 </nav>

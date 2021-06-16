@@ -1,12 +1,9 @@
 package nl.firepy.taskgenerator.common.persistence.daos;
 
-import nl.firepy.taskgenerator.common.persistence.entities.Account;
-import nl.firepy.taskgenerator.common.persistence.entities.Project;
-import nl.firepy.taskgenerator.tasks.Task;
+import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
+import nl.firepy.taskgenerator.common.persistence.entities.ProjectEntity;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.NotFoundException;
@@ -14,24 +11,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Stateless
-public class ProjectDao implements BaseDao<Project> {
+public class ProjectsDao implements BaseDao<ProjectEntity> {
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<Project> getProjectsByAccount(Account account) {
-        var query = em.createNamedQuery("Project.findByAccount", Project.class);
+    public List<ProjectEntity> getProjectsByAccount(AccountEntity account) {
+        var query = em.createNamedQuery("Project.findByAccount", ProjectEntity.class);
         query.setParameter("account", account);
         return query.getResultList();
     }
 
     @Override
-    public Optional<Project> get(int id) {
-        return Optional.ofNullable(em.find(Project.class, id));
+    public Optional<ProjectEntity> get(int id) {
+        return Optional.ofNullable(em.find(ProjectEntity.class, id));
     }
 
     @Override
-    public void save(Project project) {
+    public void save(ProjectEntity project) {
         em.persist(project);
     }
 

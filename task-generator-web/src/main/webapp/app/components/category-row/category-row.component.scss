@@ -1,0 +1,26 @@
+
+.category-row {
+    display: flex;
+    line-height: 32px;
+    padding: 8px 16px;
+}
+
+.category-name {
+    flex: 1 1 auto;
+}
+
+.category-color {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    margin-right: 16px;
+}
+
+.edit-icon {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    margin-left: 16px;
+    cursor: pointer;
+}

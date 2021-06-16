@@ -1,0 +1,32 @@
+
+@import 'variables.scss';
+
+label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+form .button-bar {
+    margin-top: 16px;
+}
+
+textarea,
+select,
+input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input[type=color] {
+    max-width: 100px;
+    height: 30px;
+}
+
+textarea {
+    height: 80px;
+}
+
+.error-container {
+    margin-top: 12px;
+}

@@ -33,6 +33,11 @@
             "styles": [
               "webapp/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "webapp/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

@@ -1,6 +1,7 @@
 package nl.firepy.taskgenerator.common.persistence.daos;
 
-import nl.firepy.taskgenerator.tasks.Task;
+import nl.firepy.taskgenerator.common.persistence.entities.ProjectEntity;
+import nl.firepy.taskgenerator.common.persistence.entities.TaskEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,24 +12,30 @@ import java.util.List;
 import java.util.Optional;
 
 @Stateless
-public class TaskDao implements BaseDao<Task> {
+public class TaskDao implements BaseDao<TaskEntity> {
 
     @PersistenceContext
     EntityManager em;
 
-    public List<Task> findByName(String name) {
-        TypedQuery<Task> query = em.createQuery("SELECT t FROM Task t WHERE t.name = :name", Task.class);
+    public List<TaskEntity> findByName(String name) {
+        TypedQuery<TaskEntity> query = em.createQuery("SELECT t FROM Task t WHERE t.name = :name", TaskEntity.class);
         query.setParameter("name", name);
         return query.getResultList();
     }
 
-    @Override
-    public Optional<Task> get(int id) {
-        return Optional.ofNullable(em.find(Task.class, id));
+    public List<TaskEntity> findByProject(ProjectEntity project) {
+        var query = em.createNamedQuery("Task.findByProject", TaskEntity.class);
+        query.setParameter("project", project);
+        return query.getResultList();
     }
 
     @Override
-    public void save(Task task) {
+    public Optional<TaskEntity> get(int id) {
+        return Optional.ofNullable(em.find(TaskEntity.class, id));
+    }
+
+    @Override
+    public void save(TaskEntity task) {
         em.persist(task);
     }
 

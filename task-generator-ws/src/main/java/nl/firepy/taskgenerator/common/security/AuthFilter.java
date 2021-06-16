@@ -30,6 +30,9 @@ public class AuthFilter implements ContainerRequestFilter {
     @Inject
     private JwtTokenService jwtTokenService;
 
+    @Inject
+    private AuthData authData;
+
     @Override
     public void filter(ContainerRequestContext requestContext) {
 
@@ -57,9 +60,11 @@ public class AuthFilter implements ContainerRequestFilter {
         String token = authorizationHeader.substring("Bearer".length()).trim();
 
         TokenPayload payload = jwtTokenService.verify(token);
+
         if(payload == null) {
             throw new NotAuthorizedException("Invalid JWT Token");
+        } else {
+            authData.setTokenPayload(payload);
         }
-
     }
 }
