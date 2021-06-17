@@ -3,11 +3,11 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { } from '@angular/material/icon/'
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  selector: 'app-task-list-page',
+  templateUrl: './task-list-page.component.html',
+  styleUrls: ['./task-list-page.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListPageComponent implements OnInit {
 
   tasks = [
     {

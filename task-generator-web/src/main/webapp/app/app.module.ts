@@ -10,9 +10,8 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TaskListComponent } from './pages/task-list/task-list.component';
+import { TaskListPageComponent } from './pages/task-list-page/task-list-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { TestPageComponent } from './pages/test-page/test-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ManagePageComponent } from './pages/manage-page/manage-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
@@ -29,9 +28,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     LoginPageComponent,
     RegisterPageComponent,
     PageNotFoundComponent,
-    TaskListComponent,
+    TaskListPageComponent,
     NavbarComponent,
-    TestPageComponent,
     DashboardComponent,
     ManagePageComponent,
     ProjectsPageComponent,

@@ -7,19 +7,17 @@ import { ManagePageComponent } from './pages/manage-page/manage-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { TaskListComponent } from './pages/task-list/task-list.component';
-import { TestPageComponent } from './pages/test-page/test-page.component';
+import { TaskListPageComponent } from './pages/task-list-page/task-list-page.component';
 import { AccountService as LoginGuard } from './services/account.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'tasklist', component: TaskListComponent /*, canActivate: [LoginGuard]*/ },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'projects', component: ProjectsPageComponent },
-  { path: 'manage', component: ManagePageComponent },
-  { path: 'manage/categories', component: CategoryPageComponent },
-  { path: 'test', component: TestPageComponent },
+  { path: 'tasklist', component: TaskListPageComponent, canActivate: [LoginGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [LoginGuard] },
+  { path: 'projects', component: ProjectsPageComponent, canActivate: [LoginGuard] },
+  { path: 'manage', component: ManagePageComponent, canActivate: [LoginGuard] },
+  { path: 'manage/categories', component: CategoryPageComponent, canActivate: [LoginGuard] },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
