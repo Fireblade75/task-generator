@@ -1,7 +1,8 @@
 
 
 export interface Category {
-    id: number,
+    id?: number,
     name: string,
     color: string,
+    projectId: number
 }

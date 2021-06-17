@@ -13,17 +13,43 @@ export class TaskListComponent implements OnInit {
     {
       "description": "Kill the evil green dragon that burned the village",
       "name": "Slay the dragon",
-      "done": false
+      "done": false,
+      "categories": [{
+        "color": "#c46a41",
+        "id": 1,
+        "name": "Combat",
+        "projectId": 1
+      }],
+      "projectId": 1
     },
     {
       "description": "The princess is trapped in the dragon's lair",
       "name": "Save the princess",
-      "done": true
+      "done": true,
+      "categories": [{
+        "color": "#c46a41",
+        "id": 1,
+        "name": "Combat",
+        "projectId": 1
+      },{
+        "color": "#72b8db",
+        "id": 2,
+        "name": "Quest",
+        "projectId": 1
+      }],
+      "projectId": 1
     },
     {
       "description": "Recreate the blade of legends",
       "name": "Reforge Excalibur",
-      "done": false
+      "done": false,
+      "categories": [{
+        "color": "#72b8db",
+        "id": 2,
+        "name": "Quest",
+        "projectId": 1
+      }],
+      "projectId": 1
     }
   ]
 

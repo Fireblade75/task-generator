@@ -10,6 +10,7 @@ import nl.firepy.taskgenerator.common.persistence.entities.ProjectEntity;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,12 +31,7 @@ public class RegisterResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response register(RegisterRequest request) {
-
-        if(!request.isValid()) {
-            return ApiError.buildResponse(400, "Ongeldig request");
-        }
-
+    public Response register(@Valid RegisterRequest request) {
         boolean emailExists = accountsDao.containsEmail(request.getEmail());
         if(emailExists) {
             log.info("Email already in use: " + request.getEmail());

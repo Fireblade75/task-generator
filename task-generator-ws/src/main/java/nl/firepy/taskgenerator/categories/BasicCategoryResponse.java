@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Deprecated
 public class BasicCategoryResponse {
     private ProjectDto project;
     private List<BasicCategory> categories = new ArrayList<>();

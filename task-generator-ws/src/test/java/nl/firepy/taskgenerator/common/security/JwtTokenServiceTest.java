@@ -1,6 +1,7 @@
 package nl.firepy.taskgenerator.common.security;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.json.Json;
@@ -12,6 +13,7 @@ import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 class JwtTokenServiceTest {
 
     private static JwtTokenService jwtTokenService;

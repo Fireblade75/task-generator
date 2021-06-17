@@ -1,6 +1,7 @@
 package nl.firepy.taskgenerator.account.register;
 
 import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
+import org.junit.jupiter.api.Disabled;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Disabled
 @ExtendWith(MockitoExtension.class)
 class RegisterResourceTest {
 

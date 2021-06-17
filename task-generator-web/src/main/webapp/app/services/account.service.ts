@@ -5,13 +5,15 @@ import { catchError, map } from 'rxjs/operators';
 import { ApiError, isApiError, RequestResponse } from '../types/common';
 import * as moment from 'moment';
 import { CanActivate, Router } from '@angular/router';
+import { environment } from './../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService implements CanActivate  {
-  private readonly loginUrl = 'api/accounts/login'
-  private readonly registerUrl = 'api/accounts/register'
+  private readonly loginUrl = environment.apiUrl + '/api/accounts/login'
+  private readonly registerUrl = environment.apiUrl + '/api/accounts/register'
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -57,8 +59,7 @@ export class AccountService implements CanActivate  {
   }
 
   isLoggedIn() {
-    return true
-    // return moment().isBefore(this.getExpiration());
+    return moment().isBefore(this.getExpiration());
   }
 
   register(credentials: RegisterRequest): Observable<RequestResponse> {

@@ -18,8 +18,8 @@
         <h2>Add Task</h2>
         <form>
             <div>
-                <label>Name</label>
-                <input type="text" name="name" />
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" />
             </div>
 
             <div>
@@ -30,9 +30,7 @@
             <div>
                 <label>Category</label>
                 <select name="category" multiple>
-                    <option>Combat</option>
-                    <option>Quest</option>
-                    <option>Exploration</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                 </select>
             </div>
 

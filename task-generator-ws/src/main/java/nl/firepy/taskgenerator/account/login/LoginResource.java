@@ -34,11 +34,6 @@ public class LoginResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@Valid LoginRequest loginRequest) {
-
-//        if(!loginRequest.isValid()) {
-//            return Response.status(400).entity(new ApiError("Invalid request")).build();
-//        }
-
         Optional<AccountEntity> account = accountsDao.findByMail(loginRequest.getEmail());
         if(account.isPresent() && account.get().verifyPassword(loginRequest.getPassword())) {
             String email = account.get().getEmail();

@@ -4,6 +4,7 @@ import nl.firepy.taskgenerator.common.persistence.daos.AccountsDao;
 import nl.firepy.taskgenerator.common.persistence.entities.AccountEntity;
 import nl.firepy.taskgenerator.common.security.JwtTokenService;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
+@Disabled
 @ExtendWith(MockitoExtension.class)
 class LoginResourceTest {
 

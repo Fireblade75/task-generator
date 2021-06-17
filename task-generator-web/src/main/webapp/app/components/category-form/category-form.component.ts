@@ -20,7 +20,7 @@ export class CategoryFormComponent implements OnInit {
   categoryForm = new FormGroup({
     name: new FormControl('', 
       [Validators.required, Validators.minLength(1), Validators.maxLength(16)]),
-    color: new FormControl('#000000',
+    color: new FormControl('#AAAAAA',
       [Validators.required])
   })
 
@@ -36,10 +36,10 @@ export class CategoryFormComponent implements OnInit {
     this.category = category
     this.categoryForm.setValue({
       name: category?.name ?? '',
-      color: category?.color ?? '#000000'
+      color: category?.color ?? '#AAAAAA'
     })
   }
-
+  
   submit() {
     if(this.categoryForm.invalid) {
       this.error = 'Name must be 1 - 16 characters long'

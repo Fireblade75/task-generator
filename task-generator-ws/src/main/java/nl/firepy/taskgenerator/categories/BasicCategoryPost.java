@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Deprecated
 public class BasicCategoryPost {
     @NotNull
     @Size(min = 1, max = 16)
@@ -21,4 +22,5 @@ public class BasicCategoryPost {
 
     @NotNull
     private int projectId;
+
 }

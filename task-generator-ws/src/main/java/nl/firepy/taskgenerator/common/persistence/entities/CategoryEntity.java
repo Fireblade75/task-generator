@@ -26,19 +26,19 @@ public class CategoryEntity implements DtoConvertable {
     private int id;
 
     @NotNull
-    @ManyToOne(optional = false, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private ProjectEntity project;
-
+    
     @NotNull
     @Column(length = 16)
     private String name;
 
     @NotNull
     @Column(length = 7)
-    private String color
+    private String color;
 
     @Override
     public CategoryDto toDto() {
-        return new CategoryDto(id, name, project.toDto());
+        return new CategoryDto(id, name, color, project.getId());
     }
 }

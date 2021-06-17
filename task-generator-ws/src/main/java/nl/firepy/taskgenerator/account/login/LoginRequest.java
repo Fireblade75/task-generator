@@ -1,7 +1,11 @@
 package nl.firepy.taskgenerator.account.login;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,17 +19,15 @@ import java.io.Serializable;
 public class LoginRequest implements Serializable {
 
     @NotNull
+    @Size(max = 64)
+    @Email
     private String email;
 
     @NotNull
+    @Size(min = 4, max = 64)
     private String password;
 
     public String getHash() {
         return BCrypt.withDefaults().hashToString(AccountEntity.hashRounds, password.toCharArray());
-    }
-
-    public boolean isValid() {
-        return email != null && password != null && email.length() > 0
-                && email.length() <= 64 && password.length() > 0 && password.length() <= 32;
     }
 }

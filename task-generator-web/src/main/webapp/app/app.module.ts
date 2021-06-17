@@ -9,7 +9,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TaskListComponent } from './pages/task-list/task-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
@@ -21,6 +21,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { CategoryRowComponent } from './components/category-row/category-row.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,13 @@ import { CategoryRowComponent } from './components/category-row/category-row.com
     MatListModule,
     FormsModule 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
